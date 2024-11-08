@@ -8,7 +8,11 @@ const createScene = function () {
     const cube_gap = cube_size * 29/67
     var rows = 5
     var columns = 6
-	var center = new BABYLON.Vector3((cube_size + cube_gap) * columns / 2 - cube_gap, 0, (cube_size + cube_gap) * rows / 2 - cube_gap);
+    var center = new BABYLON.Vector3(
+        (cube_size + cube_gap) * (columns - 1) / 2,
+        0,
+        (cube_size + cube_gap) * (rows - 1) / 2
+    );
     var blockColor = new BABYLON.Color3(0.41, 0.77, 0.98);
 	
 	//Camera
