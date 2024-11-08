@@ -18,7 +18,7 @@ const createScene = function () {
 	//Camera
     const scene = new BABYLON.Scene(engine);
     const camera = new BABYLON.ArcRotateCamera("Camera", -Math.PI/2, 0, 300, center, scene);
-    camera.attachControl(canvas, true);
+    //camera.attachControl(canvas, true);
 
     //camera.upperBetaLimit = (Math.PI / 2) * 0.99;
 
