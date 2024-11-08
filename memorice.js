@@ -107,19 +107,18 @@ const createScene = function() {
     /*************************************Logic****************************************/
     var upCards = [];
     var pointerTap = function(mesh) {
-        if (mesh.rotation.z == 0) {
-            console.log(mesh.name);
-            mesh.rotation.z = Math.PI;
+        if (mesh != upCards[0] && mesh != upCards[1]) {
+            BABYLON.Animation.CreateAndStartAnimation("revealCard", mesh, "rotation.x", 60, 15, 0, Math.PI, 0);
             upCards.push(mesh);
             if (upCards.length == 2) {
                 if (upCards[0].name == upCards[1].name) {
-                    upCards[0].dispose();
-                    upCards[1].dispose();
+                    BABYLON.Animation.CreateAndStartAnimation("revealCard", upCards[0], "scaling", 60, 15, new BABYLON.Vector3(1, 0.5, 1), new BABYLON.Vector3(0, 0, 0), 0);
+                    BABYLON.Animation.CreateAndStartAnimation("revealCard", upCards[1], "scaling", 60, 15, new BABYLON.Vector3(1, 0.5, 1), new BABYLON.Vector3(0, 0, 0), 0);
                     upCards.length = 0;
                 }
             } else if (upCards.length == 3) {
-                upCards[0].rotation.z = 0;
-                upCards[1].rotation.z = 0;
+                BABYLON.Animation.CreateAndStartAnimation("revealCard", upCards[0], "rotation.x", 60, 15, Math.PI, 0, 0);
+                BABYLON.Animation.CreateAndStartAnimation("revealCard", upCards[1], "rotation.x", 60, 15, Math.PI, 0, 0);
                 upCards[0] = upCards[2];
                 upCards.length = 1;
             }
