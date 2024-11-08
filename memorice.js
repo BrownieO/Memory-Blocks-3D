@@ -125,12 +125,14 @@ const createScene = function() {
             }
         }
     }
-
+    const canvasParent = document.getElementById('renderCanvas');
     scene.onPointerObservable.add((pointerInfo) => {
         switch (pointerInfo.type) {
             case BABYLON.PointerEventTypes.POINTERTAP:
                 if (pointerInfo.pickInfo.hit && pointerInfo.pickInfo.pickedMesh != ground) {
                     pointerTap(pointerInfo.pickInfo.pickedMesh)
+                } else {
+                    canvasParent.requestFullscreen();
                 }
                 break;
         }
