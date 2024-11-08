@@ -63,7 +63,7 @@ const createScene = function () {
     var faceColors = new Array(6).fill(blockColor);
 	faceColors[5] = new BABYLON.Color3(1, 1, 1);
 	
-	const texture = new BABYLON.Texture("https://i.ibb.co/rtpR8tH/lazytown.png", scene);
+	const texture = new BABYLON.Texture("lazytown.png", scene);
 	const uvColumns = 6;
 	const uvRows = 6;
 	var faceUV = new Array(6).fill(
