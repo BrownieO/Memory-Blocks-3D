@@ -17,14 +17,9 @@ const createScene = function() {
     //Camera
     const scene = new BABYLON.Scene(engine);
     const camera = new BABYLON.ArcRotateCamera("Camera", 0, 0, 270, center, scene);
-    //camera.attachControl(canvas, true);
-
-    //camera.upperBetaLimit = (Math.PI / 2) * 0.99;
 
     // Light
     scene.ambientColor = new BABYLON.Color3(1, 1, 1);
-    //const light = new BABYLON.PointLight("omni", new BABYLON.Vector3(50, 200, 100), scene);
-    //light.intensity = 0.8
 
     //Card data
     var cards = [
