@@ -8,15 +8,15 @@ const createScene = function() {
     var rows = 5
     var columns = 6
     var center = new BABYLON.Vector3(
-        (cube_size + cube_gap) * (columns - 1) / 2,
+        (cube_size + cube_gap) * (rows - 1) / 2,
         0,
-        (cube_size + cube_gap) * (rows - 1) / 2
+        (cube_size + cube_gap) * (columns - 1) / 2
     );
     var blockColor = new BABYLON.Color3(0.41, 0.77, 0.98);
 
     //Camera
     const scene = new BABYLON.Scene(engine);
-    const camera = new BABYLON.ArcRotateCamera("Camera", -Math.PI / 2, 0, 270, center, scene);
+    const camera = new BABYLON.ArcRotateCamera("Camera", 0, 0, 270, center, scene);
     //camera.attachControl(canvas, true);
 
     //camera.upperBetaLimit = (Math.PI / 2) * 0.99;
@@ -60,6 +60,7 @@ const createScene = function() {
         width: 1000,
         height: 1000
     }, scene, false);
+    ground.position.y = -8
 
     // Cubes
     const blockMaterial = new BABYLON.StandardMaterial("cubeMaterial", scene);
@@ -79,8 +80,8 @@ const createScene = function() {
     blockMaterial.diffuseTexture = texture;
 
     var counter = 0
-    for (let i = 0; i < columns; i++) {
-        for (let j = 0; j < rows; j++) {
+    for (let i = 0; i < rows; i++) {
+        for (let j = 0; j < columns; j++) {
             faceUV[5] =
                 new BABYLON.Vector4(
                     (cards[counter] % 6) / 6,
@@ -98,8 +99,7 @@ const createScene = function() {
             newInstance.faceUV = faceUV
             newInstance.position.x = (cube_size + cube_gap) * i;
             newInstance.position.z = (cube_size + cube_gap) * j;
-            newInstance.rotation.y = Math.PI / 2
-            newInstance.isVisible = true;
+            newInstance.rotation.y = Math.PI;
             counter = counter + 1;
         }
     }
