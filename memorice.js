@@ -100,6 +100,7 @@ const createScene = function() {
             newInstance.position.x = (cube_size + cube_gap) * i;
             newInstance.position.z = (cube_size + cube_gap) * j;
             newInstance.rotation.y = Math.PI;
+            newInstance.scaling.y = 0.5 
             counter = counter + 1;
         }
     }
