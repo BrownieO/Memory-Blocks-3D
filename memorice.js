@@ -23,6 +23,7 @@ const createScene = function() {
     //Camera
     const scene = new BABYLON.Scene(engine);
     const camera = new BABYLON.ArcRotateCamera("Camera", 0, 0, 266, center, scene);
+	scene.clearColor = groundColor
     //camera.attachControl(canvas, true);
 
     // Lighting
@@ -41,7 +42,6 @@ const createScene = function() {
     cards.sort(function(a, b) {
         return getRandomInt(cards.length) - getRandomInt(cards.length); // Shuffle FIXME: Improve randomization
     });
-    console.log(cards)
     cards.length = Math.ceil(columns * rows / 2) // Pick some
     cards = cards.flatMap(i => [i, i]); // Duplicate the cards
     cards.sort(function(a, b) {
@@ -80,7 +80,7 @@ const createScene = function() {
     var faceColors = new Array(6).fill(blockColor);
     faceColors[5] = new BABYLON.Color3(1, 1, 1);
 
-    const texture = new BABYLON.Texture("motifs.png", scene);
+    const texture = new BABYLON.Texture("https://raw.githubusercontent.com/BrownieO/Memory-Blocks-3D/refs/heads/main/motifs.png", scene);
     const uvColumns = 6;
     const uvRows = 6;
     var faceUV = new Array(6).fill(
@@ -119,17 +119,17 @@ const createScene = function() {
     var upCards = [];
     var pointerTap = function(mesh) {
         if (mesh != upCards[0] && mesh != upCards[1]) {
-            BABYLON.Animation.CreateAndStartAnimation("revealCard", mesh, "rotation.x", 60, 15, 0, Math.PI, 0);
-            upCards.push(mesh);
+            BABYLON.Animation.CreateAndStartAnimation("revealCard", mesh, "rotation.x", 60, 15, 0, Math.PI, 2);
+            upCards.push(mesh);		
             if (upCards.length == 2) {
                 if (upCards[0].name == upCards[1].name) {
-                    BABYLON.Animation.CreateAndStartAnimation("discardCard", upCards[0], "scaling", 60, 15, new BABYLON.Vector3(1, 0.5, 1), new BABYLON.Vector3(0, 0, 0), 0);
-                    BABYLON.Animation.CreateAndStartAnimation("discardCard", upCards[1], "scaling", 60, 15, new BABYLON.Vector3(1, 0.5, 1), new BABYLON.Vector3(0, 0, 0), 0);
+                    BABYLON.Animation.CreateAndStartAnimation("discardCard", upCards[0], "scaling", 60, 15, new BABYLON.Vector3(1, 0.5, 1), new BABYLON.Vector3(0, 0, 0), 2);
+                    BABYLON.Animation.CreateAndStartAnimation("discardCard", upCards[1], "scaling", 60, 15, new BABYLON.Vector3(1, 0.5, 1), new BABYLON.Vector3(0, 0, 0), 2);
                     upCards.length = 0;
                 }
             } else if (upCards.length == 3) {
-                BABYLON.Animation.CreateAndStartAnimation("hideCard", upCards[0], "rotation.x", 60, 15, Math.PI, 0, 0);
-                BABYLON.Animation.CreateAndStartAnimation("hideCard", upCards[1], "rotation.x", 60, 15, Math.PI, 0, 0);
+                BABYLON.Animation.CreateAndStartAnimation("hideCard", upCards[0], "rotation.x", 60, 15, Math.PI, 0, 2);
+                BABYLON.Animation.CreateAndStartAnimation("hideCard", upCards[1], "rotation.x", 60, 15, Math.PI, 0, 2);
                 upCards[0] = upCards[2];
                 upCards.length = 1;
             }
